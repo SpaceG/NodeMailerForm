@@ -1,0 +1,10 @@
+{
+  "name": "speednodemailers",
+  "version": "0.0.1",
+  "description": "NodeJs email form to send email using nodejs",
+  "dependencies": {
+    "nodemailer": "~0.7.0",
+    "express": "~3.4.0",
+    "body-parser": "~1.13.1"
+  }
+}
