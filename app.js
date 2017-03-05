@@ -34,12 +34,12 @@ if(req.body.email == "" || req.body.subject == "") {
     secureConnection: true, // use SSL
     port: 465, // port for secure SMTP
             auth: {
-                 user: 'lucasgatsas@gmail.com',
-                 pass: 'Spiegel-2017-1'
+                 user: 'yourgmail@gmail.com',
+                 pass: 'yourpassword'
             }
         });
         var mailOptions = {
-            from: "Node Emailer ✔ <lucasgatsas@gmail.com>", // sender address
+            from: "Node Emailer ✔ <yourgmail@gmail.com>", // sender address
             to: req.body.email, // list of receivers
             subject: req.body.subject+" ✔", // Subject line
             //text: "Hello world ✔", // plaintext body
