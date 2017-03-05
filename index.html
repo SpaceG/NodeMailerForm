@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Send email in nodejs</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<style type="text/css">img#logo-tp{margin:0 auto;display:-webkit-box;margin-top:50px}.panel-primary>.panel-heading{color:#fff;background-color:#25292d;border-color:#040404}.btn-primary{    float: right;color:#fff;background-color:#2f2f2f;border-color:#353535}.panel-primary{border-color:#e8e8e8}.btn-primary.active,.btn-primary.focus,.btn-primary:active,.btn-primary:focus,.btn-primary:hover,.open>.dropdown-toggle.btn-primary{color:#fff;background-color:#212121;border-color:#333}
+</style>
+</head>
+<body>
+<header>
+  <img src="https://lh3.googleusercontent.com/V1cdpBcNDAXQb7H0WnzlkgMMLwhgg8jbCNfEJ-RKGy4Pfgxlze5G3lYeBDuDLcRc4Kwt7UumFEy4jfGTq95MjqZ9Ukv9tREvtFJfI5gA2uq-cFfqOHoyFuSxKd8zodzUIwtg1RrnHMH3BZK3aYyXDudLxIJ1S5310-1wqXC95f-kQMUw_4jd2NHU4HmFPMMYF6l_pFZyKe2YrIHUk7dMlhTJ52BgtkTcRAJT_1ZOuDwrlstvCffjooZJqyS8wgXL3C5Sdtq0d9DTZN-HMRmdst7c3Fa-Iwj5aHu3vH9O3wgMGW8oX19jteGmZBTUIEn22xXtSrns9JZaECJgYXj534k6Y7KmMlOAY1_UGJZRGdhkisRgSWhZGtt16W0ol28jRIiixYM-akR7yvOLaSLALJolxIlKzouZuSNy6pffclBABioJLDrQeOjv_S351xjdtyZDzZ7oq1dEdsbMR8dem4yQcw3TjPrkFMQIyM5YE5qVheJgrpv2LSw_fVIFr6gvCnUlgd5jmhTFE5LGdypv9Q41GwnM9QKFeRSUWnrvuc5g2qA9KYOzosrN4k-KxX1A_-JfpgnJgvCGIaNNhg_TCdr4mM7AfNJwwqsDtkFt0tVRKK8idM_0_g=w200-h136-no" id="logo-tp">
+</header>
+<div class="panel panel-primary" style="width:50%;margin:0 auto; margin-top:10%">
+  <div class="panel-heading">
+    <h3>Email Form In Node.Js</h3>
+  </div>
+<div class="panel-body" style="height:40%; text-align:center;" >
+<p class="bg-info" id="msg"></p>
+ <form class="form-horizontal" role="form" id="emailForm" method="post">
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="email">Email:</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" name="email" placeholder="Enter email" required="required">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="subject">Subject:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="subject" placeholder="Enter subject" required="required">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="description">Description:</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" name="description" placeholder="Enter Description"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button id="send" class="btn btn-primary btn-lg" type="button">
+         <span class="glyphicon glyphicon-send" ></span> Send
+      </button>
+    </div>
+  </div>
+</form>
+</div>
+</div>
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script>
+$(function(){
+  var fullUrl =  location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '');
+    $("#send").click(function(){      
+      var formData = $("#emailForm").serialize();
+      $("#msg").text("Email sending Please wait..");
+                $.ajax({
+                  url: fullUrl+'/send',
+                    type: 'POST',
+                      data: formData,
+                            success: function(result) {
+                                 $("#msg").empty().text(result);
+                                  },
+                            error: function(e) {
+                                 $("#msg").empty().text("There is some error to send email, Error code:"+e.status +", Error message:"+e.statusText);
+                       },
+                dataType: "html",
+                timeout: 60000
+            });
+    });
+});
+</script>
+
+</body>
+</html>
